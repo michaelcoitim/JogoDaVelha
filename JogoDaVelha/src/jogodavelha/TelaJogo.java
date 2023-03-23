@@ -13,9 +13,20 @@ public class TelaJogo extends javax.swing.JFrame {
      */
     
     boolean xouO = false;// controle X ou O
+    boolean[] clicou = new boolean[9]; // variavel controle click botao
+    
+     
     public TelaJogo() {
         initComponents();
+        
+        
+        
+        //populando vetor clicou com false
+        for (int i=0; i<9; i++){
+            clicou[i]=false;
+        }
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -47,7 +58,7 @@ public class TelaJogo extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         pontuacaoO1 = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Jogo da velha ");
         setAlwaysOnTop(true);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -66,6 +77,11 @@ public class TelaJogo extends javax.swing.JFrame {
         });
 
         btn3.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        btn3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn3ActionPerformed(evt);
+            }
+        });
 
         btn1.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         btn1.addActionListener(new java.awt.event.ActionListener() {
@@ -75,16 +91,46 @@ public class TelaJogo extends javax.swing.JFrame {
         });
 
         btn4.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        btn4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn4ActionPerformed(evt);
+            }
+        });
 
         btn5.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        btn5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn5ActionPerformed(evt);
+            }
+        });
 
         btn6.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        btn6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn6ActionPerformed(evt);
+            }
+        });
 
         btn7.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
+        btn7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn7ActionPerformed(evt);
+            }
+        });
 
         btn8.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        btn8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn8ActionPerformed(evt);
+            }
+        });
 
         btn9.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        btn9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn9ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Agency FB", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -236,17 +282,78 @@ public class TelaJogo extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNovoJogoActionPerformed
 
     private void btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn1ActionPerformed
-        mudarTexto(btn1);
+        
+        if(clicou[0]== false){
+            clicou[0]=true;
+            mudarTexto(btn1);
+        } 
+        
     }//GEN-LAST:event_btn1ActionPerformed
 
     private void btn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn2ActionPerformed
-        mudarTexto(btn2);
+            if(clicou[1]== false){
+            clicou[1]=true;
+            mudarTexto(btn2);
+        } 
     }//GEN-LAST:event_btn2ActionPerformed
 
+    private void btn5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn5ActionPerformed
+      
+        if(clicou[4]== false){
+            clicou[4]=true;
+            mudarTexto(btn5);
+        } 
+    }//GEN-LAST:event_btn5ActionPerformed
+
+    private void btn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn3ActionPerformed
+        if(clicou[2]== false){
+            clicou[2]=true;
+            mudarTexto(btn3);
+        } 
+    }//GEN-LAST:event_btn3ActionPerformed
+
+    private void btn4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn4ActionPerformed
+        if(clicou[3]== false){
+            clicou[3]=true;
+            mudarTexto(btn4);
+        } 
+    }//GEN-LAST:event_btn4ActionPerformed
+
+    private void btn6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn6ActionPerformed
+            if(clicou[5]== false){
+            clicou[5]=true;
+            mudarTexto(btn6);
+        } 
+    }//GEN-LAST:event_btn6ActionPerformed
+
+    private void btn7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn7ActionPerformed
+        
+        if(clicou[6]== false){
+            clicou[6]=true;
+            mudarTexto(btn7);
+        } 
+    }//GEN-LAST:event_btn7ActionPerformed
+
+    private void btn8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn8ActionPerformed
+            if(clicou[7]== false){
+            clicou[7]=true;
+            mudarTexto(btn8);
+        } 
+    }//GEN-LAST:event_btn8ActionPerformed
+
+    private void btn9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn9ActionPerformed
+        
+        if(clicou[8]== false){
+            clicou[8]=true;
+            mudarTexto(btn9);
+        } 
+    }//GEN-LAST:event_btn9ActionPerformed
+        
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        
         
 
         /* Create and display the form */
