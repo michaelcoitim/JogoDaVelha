@@ -15,6 +15,9 @@ public class TelaJogo extends javax.swing.JFrame {
     
     boolean xouO = false;// controle X ou O
     boolean[] clicou = new boolean[9]; // variavel controle click botao
+    int pontoO = 0; //pountuacao o
+    int pontoX=0; // pontuacao x
+    int empate=0;
     
      
     public TelaJogo() {
@@ -57,7 +60,7 @@ public class TelaJogo extends javax.swing.JFrame {
         pontuacaoO = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        pontuacaoO1 = new javax.swing.JTextField();
+        pontuacaoEmpate = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Jogo da velha ");
@@ -149,12 +152,23 @@ public class TelaJogo extends javax.swing.JFrame {
         });
 
         btnLimpar.setText("limpar");
+        btnLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimparActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("X=");
+
+        pontuacaoX.setText("0");
+
+        pontuacaoO.setText("0");
 
         jLabel4.setText("O=");
 
         jLabel5.setText("empate");
+
+        pontuacaoEmpate.setText("0");
 
         javax.swing.GroupLayout painelLayout = new javax.swing.GroupLayout(painel);
         painel.setLayout(painelLayout);
@@ -204,7 +218,7 @@ public class TelaJogo extends javax.swing.JFrame {
                                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, painelLayout.createSequentialGroup()
                                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(pontuacaoO1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(pontuacaoEmpate, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, painelLayout.createSequentialGroup()
                                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -235,7 +249,7 @@ public class TelaJogo extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(painelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(pontuacaoO1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(pontuacaoEmpate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(39, 39, 39)
                         .addGroup(painelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnNovoJogo)
@@ -279,7 +293,16 @@ public class TelaJogo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNovoJogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoJogoActionPerformed
-        // TODO add your handling code here:
+     
+        limpar();
+        pontuacaoO.setText("") ;
+        pontuacaoX.setText("");
+        pontuacaoEmpate.setText("");
+        pontoO = 0; 
+        pontoX=0; 
+        empate=0;
+       
+        
     }//GEN-LAST:event_btnNovoJogoActionPerformed
 
     private void btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn1ActionPerformed
@@ -349,6 +372,11 @@ public class TelaJogo extends javax.swing.JFrame {
             mudarTexto(btn9);
         } 
     }//GEN-LAST:event_btn9ActionPerformed
+
+    private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
+        limpar();
+        
+    }//GEN-LAST:event_btnLimparActionPerformed
         
     /**
      * @param args the command line arguments
@@ -383,8 +411,8 @@ public class TelaJogo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel painel;
+    private javax.swing.JTextField pontuacaoEmpate;
     private javax.swing.JTextField pontuacaoO;
-    private javax.swing.JTextField pontuacaoO1;
     private javax.swing.JTextField pontuacaoX;
     // End of variables declaration//GEN-END:variables
 
@@ -402,13 +430,14 @@ public class TelaJogo extends javax.swing.JFrame {
     }
     
     private void ganhou(){
+        // valida se o todos os botooes foram apertados 
         int apertado =0;
         for (int i = 0; i < 9; i++) {
             if(clicou[i]==true){
                 apertado++ ;
             }
         }
-        
+        // posibilidade de ganho X
         if((btn1.getText()=="X" && btn2.getText()=="X" && btn3.getText()=="X")||
                 (btn4.getText()=="X" && btn5.getText()=="X" && btn6.getText()=="X")||
                 (btn7.getText()=="X" && btn8.getText()=="X" && btn9.getText()=="X")||
@@ -420,7 +449,13 @@ public class TelaJogo extends javax.swing.JFrame {
                 
             ){   
                 JOptionPane.showMessageDialog(rootPane, "X ganhou");
+                pontoX++;
                 limpar();
+                atualizar();
+                
+                
+                
+                // posibilidade de ganho Y
         }else if((btn1.getText()=="O" && btn2.getText()=="O" && btn3.getText()=="O")||
                 (btn4.getText()=="O" && btn5.getText()=="O" && btn6.getText()=="O")||
                 (btn7.getText()=="O" && btn8.getText()=="O" && btn9.getText()=="O")||
@@ -432,16 +467,24 @@ public class TelaJogo extends javax.swing.JFrame {
                 
             ){   
                 JOptionPane.showMessageDialog(rootPane, "O ganhou");
+                pontoO++;
                 limpar();
+                atualizar();
+                
+               
         }else if (apertado==9){
             JOptionPane.showMessageDialog(rootPane, "Empate");
+            empate++;
             limpar();
+            atualizar();
             
         }
     }
     
+    // lipa os textos dos botoes 
     private void limpar(){
         for(int i = 0; i < 9;i++){
+            // controle preciona botao 
             clicou[i]=false;
         }
         btn1.setText("");
@@ -453,5 +496,13 @@ public class TelaJogo extends javax.swing.JFrame {
         btn7.setText("");
         btn8.setText("");
         btn9.setText("");
+        xouO = false; // para sempre que um novo jogo comecar com X
+    }
+    
+    // mostra  o placar 
+    private void atualizar(){
+        pontuacaoO.setText(Integer.toString(pontoO)) ;
+        pontuacaoX.setText(Integer.toString(pontoX));
+        pontuacaoEmpate.setText(Integer.toString(empate));
     }
 }
